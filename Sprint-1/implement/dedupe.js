@@ -7,9 +7,14 @@ function dedupe(list) {
             return list 
 //given an array with no duplicates, it returns a copy of the original array
         } else if (list.length !== 0){
-            let occurence = 0
-            for (i = 0, i < list.length; indexBeingChecked = 0,  i++)
-                list[i] === list[1]
-                                                                                                                  
-        }
+          for (let i = 0; i < list.length; i++) {
+             for (let j = i + 1; j < list.length; j++) {
+                if (list[i] === list[j]) {
+                        return`duplicate found at index ${j} with value ${list[j]}`
+                } 
+              }                                                                                               
+          }
+        } return [...list];       
 }
+
+console.log(dedupe(['a','b','c','a']));
