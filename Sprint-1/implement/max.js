@@ -17,7 +17,7 @@ function findMax(elements) {
             }
         });
 
-// If no numerical elements are found, return -Infinity
+// If no numerical elements are found, return "no numbers exist in the array"
             if (numericalElement.length === 0) {
                 return  "no numbers exist in the array";
             }
