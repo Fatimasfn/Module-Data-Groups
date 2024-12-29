@@ -1,6 +1,6 @@
 function contains(object, propertyName) {
     const keys = Object.keys(object); 
-    console.log(keys); //debugging
+    //console.log(keys); //debugging
      return keys.includes(propertyName);
 }
 
