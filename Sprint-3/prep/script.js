@@ -1,3 +1,4 @@
+/* jest-ignore-file */
 //Given an textarea and a character limit of 200
 //When a user types characters into the textarea
 //Then the interface should update with how many characters they’ve got left.
