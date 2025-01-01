@@ -1,3 +1,24 @@
+//step 1; get element required.
+const quote = document.querySelector("#quote");
+const author = document.querySelector("#author");
+const newQuoteButton = document.querySelector("#new-quote");
+
+//step 2: eventlistener: on initial load, display quote.
+document.addEventListener("DOMContentLoaded", () => {
+   let randomQuote = pickFromArray(quotes);
+   quote.innerText = randomQuote.quote;
+   author.innerText = randomQuote.author;
+});
+
+//step 3: on click display a new quote.
+newQuoteButton.addEventListener("click", () => {
+   let randomQuote = pickFromArray(quotes);
+   quote.innerText = randomQuote.quote;
+   author.innerText = randomQuote.author;
+});
+
+
+
 // DO NOT EDIT BELOW HERE
 
 // pickFromArray is a function which will return one item, at
@@ -14,7 +35,7 @@
 // Examples of use
 // ---------------
 // pickFromArray(['a','b','c','d'])     // maybe returns 'c'
-
+ 
 // You don't need to change this function
 function pickFromArray(choices) {
   return choices[Math.floor(Math.random() * choices.length)];
