@@ -1,49 +1,73 @@
-//step 1; Access time input $ set alarm button??
-const timeInput = document.querySelector("#alarmSet");
-const setAlarmButton = document.querySelector("#set");
-const remainingTimeCounter = document.querySelector("#timeRemaining");
+// Step 1: Access time input and buttons
+const timeInputElement = document.querySelector("#alarmSet");
+const setAlarmButtonElement = document.querySelector("#set");
+const stopAlarmButtonElement = document.querySelector("#stop");
+const timeRemainingElement = document.querySelector("#timeRemaining");
 
+let intervalId = null; // To track the active countdown interval
 
+// Step 2: Event listener for "Set Alarm" button
+setAlarmButtonElement.addEventListener("click", function () {
+  const timeInputValue = parseInt(timeInputElement.value, 10);
 
-//step 2; create an event listener when set button is clicked.
-setAlarmButton.addEventListener("click", function(){ 
- //console.log(timeInputValue, "<--- the value of input");
- let timeInputValue = timeInput.value;
- countdown(timeInputValue);
+  // Validate input
+  if (isNaN(timeInputValue) || timeInputValue <= 0) {
+    alert("Please enter a valid positive number.");
+    return;
+  }
+
+  // Clear any existing countdown interval
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
+  // Start the countdown
+  startCountdown(timeInputValue);
 });
 
-//the countdown, how can I set a countdown?
-function countdown(timeInputValue) {
-  let counter = timeInputValue;
+// Step 3: Countdown function
+function startCountdown(initialTime) {
+  let timeRemaining = initialTime;
 
-  // Set up the interval
-  const intervalId = setInterval(() => {
-    remainingTimeCounter.innerText = `Time Remaining: ${formatTime(counter)}`;
-    counter--; // Decrease the counter by 1 and update display of count
+  // Update the display immediately (no delay)
+  timeRemainingElement.innerText = `Time Remaining: ${formatTime(timeRemaining)}`;
 
-    // Stop the timer when it reaches below zero
-    if (counter === 0) {
-        clearInterval(intervalId); // play alarm
-        remainingTimeCounter.innerText = "Time Remaining: 00:00"
-        playAlarm()
-        
+  // Set up the countdown interval
+  intervalId = setInterval(() => {
+    timeRemaining--;
+
+    // Update the display
+    timeRemainingElement.innerText = `Time Remaining: ${formatTime(timeRemaining)}`;
+
+    // Stop the countdown when it reaches zero
+    if (timeRemaining <= 0) {
+      clearInterval(intervalId);
+      intervalId = null; // Clear the interval tracker
+      timeRemainingElement.innerText = "Time Remaining: 00:00";
+      playAlarm();
     }
-  }, 1000); // Run every 1000 milliseconds (1 second)
+  }, 1000);
 }
 
+// Step 4: Format time as MM:SS
 function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60); // Calculate the number of minutes
-  const remainingSeconds = seconds % 60;  // Get the remaining seconds
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
 
-  // Pad minutes and seconds with leading zero if needed
   const formattedMinutes = String(minutes).padStart(2, "0");
   const formattedSeconds = String(remainingSeconds).padStart(2, "0");
 
   return `${formattedMinutes}:${formattedSeconds}`;
 }
- 
 
-function setAlarm() {}
+// Step 5: Alarm handling
+function setAlarm() {
+  const timeInputValue = parseInt(timeInputElement.value, 10);
+  if (!isNaN(timeInputValue) && timeInputValue > 0) {
+    startCountdown(timeInputValue);
+  }
+}
+ 
 
 // DO NOT EDIT BELOW HERE
 
@@ -52,6 +76,7 @@ var audio = new Audio("alarmsound.mp3");
 function setup() {
   document.getElementById("set").addEventListener("click", () => {
     setAlarm();
+     stopAlarmButtonElement.addEventListener("click", () => pauseAlarm());
   });
 
   document.getElementById("stop").addEventListener("click", () => {
