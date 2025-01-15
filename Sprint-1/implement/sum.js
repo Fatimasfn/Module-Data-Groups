@@ -20,7 +20,7 @@ function sum(elements) {
 
 // If no numerical elements are found,"no numerical value exists"
             if (numericalElement.length === 0) {
-                return  "no numerical value exists";
+                return  NaN;
             }
 // Debugging output to check filtered values
         console.log(numericalElement); 
