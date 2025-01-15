@@ -12,7 +12,7 @@ function findMax(elements) {
     return Math.max(...numericalElement);
 }
 
-const elements = [ "dog", "cat"];
-console.log(findMax(elements));
+//const elements = [ "dog","cat"];
+console.log(findMax([NaN]));
 
 module.exports = findMax;
