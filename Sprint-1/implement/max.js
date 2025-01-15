@@ -19,7 +19,7 @@ function findMax(elements) {
 
 // If no numerical elements are found, return "no numbers exist in the array"
             if (numericalElement.length === 0) {
-                return  "no numbers exist in the array";
+                return  NaN;
             }
 // Debugging output to check filtered values
         console.log(numericalElement); 
@@ -31,6 +31,6 @@ function findMax(elements) {
 
 
 const elements = [ "dog", "cat"];
-console.log(findMax(elements)); // Output: 4
+console.log(findMax(elements));
 
 module.exports = findMax;
