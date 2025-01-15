@@ -52,8 +52,7 @@ test("contains returns false for a non-existent property", () => {
 // Given invalid parameters like an array
 // When passed to contains
 // Then it should return false or throw an error
-test("contains returns false for a non-existent property", () => {
-  const obj = { a: 1, b: 2 };
-  const result = contains(obj, "c");
-  expect(result).toBe(false);
+test("contains throws an error for invalid object parameter", () => {
+    expect(() => contains(null, "a")).toThrow("Invalid parameter: obj must be a non-null object.");
+    expect(() => contains(42, "a")).toThrow("Invalid parameter: obj must be a non-null object.");
 });
