@@ -54,5 +54,9 @@ describe("tally function", () => {
     expect(tally(items)).toEqual(expectedOutput);
   });
 
+  test("throws an error when input is a string", () => {
+        expect(() => tally("not an array")).toThrow("Input needs to be an array");
+   });
+
 });
 
