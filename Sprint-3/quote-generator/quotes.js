@@ -1,21 +1,18 @@
-//step 1; get element required.
+// Step 1: Get the required elements
 const quote = document.querySelector("#quote");
 const author = document.querySelector("#author");
 const newQuoteButton = document.querySelector("#new-quote");
 
-//step 2: eventlistener: on initial load, display quote.
-document.addEventListener("DOMContentLoaded", () => {
-   let randomQuote = pickFromArray(quotes);
-   quote.innerText = randomQuote.quote;
-   author.innerText = randomQuote.author;
-});
+// Step 2: Function to display a random quote
+function displayRandomQuote() {
+  const randomQuote = pickFromArray(quotes);
+  quote.innerText = randomQuote.quote;
+  author.innerText = randomQuote.author;
+}
 
-//step 3: on click display a new quote.
-newQuoteButton.addEventListener("click", () => {
-   let randomQuote = pickFromArray(quotes);
-   quote.innerText = randomQuote.quote;
-   author.innerText = randomQuote.author;
-});
+// Step 3: Event listeners
+document.addEventListener("DOMContentLoaded", displayRandomQuote);
+newQuoteButton.addEventListener("click", displayRandomQuote);
 
 
 
