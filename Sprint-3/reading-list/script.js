@@ -31,7 +31,7 @@ const readingList = document.querySelector("#reading-list");
   listItem.innerHTML = `
   <p> ${book.title}</p> by ${book.author}
   <br>
-  <img src="${book.bookCoverImage}" alt= "${book.title}cover" width ="100"> 
+  <img src="${book.bookCoverImage}" alt= "${book.title} cover" width ="100"> 
   `;
   //if alreadyRead is true set background color to green else to red
   if(book.alreadyRead){
