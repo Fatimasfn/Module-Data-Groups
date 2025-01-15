@@ -1,7 +1,6 @@
 function contains(object, propertyName) {
-    const keys = Object.keys(object); 
-    //console.log(keys); //debugging
-     return keys.includes(propertyName);
+   return Object.hasOwn(object, propertyName);
+
 }
 
 const book = {a: 1, b: 2}
